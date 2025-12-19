@@ -1,68 +1,40 @@
-# Pollutant Transport Model – How to Run
+# Pollutant Transport Model – Quick Run Guide
 
-## What this code does
-This code simulates how a pollutant moves downstream in a river using a
-1D advection model solved with an upwind finite difference method.
-
-It produces plots showing pollutant concentration versus distance for
-different test cases.
+## Purpose
+This code models one-dimensional pollutant transport in a river using an
+upwind finite difference advection scheme. It produces plots showing how
+pollutant concentration changes with distance and time.
 
 ## Requirements
-- Python 3
-- NumPy
-- Matplotlib
-- Pandas
-- Google Colab (recommended)
+Python 3, NumPy, Matplotlib, Pandas  
+(Google Colab recommended)
 
-## Files needed
-- `initial_conditions.csv` (provided in the `data/` folder)
-- Python script or notebook containing the model code
+## Files
+- Python script or notebook
+- `initial_conditions.csv` (input data)
 
-## How to run the code
-1. Open the notebook or Python script in Google Colab or a local Python environment.
+## How to Run
+1. Open the code in Google Colab or a local Python environment.
 2. Run all cells from top to bottom.
-3. When prompted, enter the model parameters (dx, dt, U).
+3. Enter model parameters when prompted (dx, dt, U).
 4. Upload `initial_conditions.csv` when requested.
-5. The code will automatically generate plots for each test case.
+5. Plots are generated automatically.
 
-## Test Cases and Expected Results
+## Test Cases
 
-### Test Case 1 – Simple Initial Condition
-- Initial concentration: 250 µg/m³ at x = 0, zero elsewhere
-- Domain: 20 m
-- Resolution: dx = 0.2 m, dt = 10 s
-- Velocity: U = 0.1 m/s
+**Test Case 1 – Simple Initial Condition**  
+- 20 m domain, dx = 0.2 m, dt = 10 s, U = 0.1 m/s  
+- Initial concentration: 250 µg/m³ at x = 0, zero elsewhere  
+Expected: pollutant plume advects downstream smoothly.
 
-Expected result:
-- Pollutant plume moves downstream over time
-- Peak concentration decreases due to numerical diffusion
-- Concentration remains non-negative
+**Test Case 2 – CSV Initial Conditions**  
+- Initial concentrations read from `initial_conditions.csv` and interpolated.  
+Expected: interpolated profile moves downstream over time.
 
-### Test Case 2 – CSV Initial Conditions
-- Initial concentration read from `initial_conditions.csv`
-- Values are interpolated onto the model grid
-
-Expected result:
-- Initial concentration profile matches the CSV shape
-- Profile advects downstream smoothly over time
-
-### Test Case 3 – Sensitivity Testing
-- Model is run multiple times while varying:
-  - Velocity U
-  - Spatial resolution dx
-  - Temporal resolution dt
-
-Expected result:
-- Higher U → faster downstream transport
-- Smaller dx and dt → smoother and more accurate results
-- CFL condition is automatically enforced
+**Test Case 3 – Sensitivity Testing**  
+- Velocity, spatial resolution, and time step are varied.  
+Expected: higher velocity gives faster transport; smaller dx and dt improve accuracy.
 
 ## Output
-- Plots of concentration vs distance at selected times
-- Sensitivity comparison plots
-- Figures are displayed automatically and can be saved if required
-
-## Notes
-- The CFL stability condition is checked automatically.
-- The downstream boundary uses a zero-gradient condition.
-- Results may differ slightly depending on chosen resolution.
+- Plots of concentration versus distance at selected times.
+- CFL stability is checked automatically.
