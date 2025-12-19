@@ -26,6 +26,7 @@ The model requires the following user-defined parameters:
 
 Initial concentration data are read from `initial_conditions.csv` and interpolated
 onto the model grid. 
+The `initial_conditions.csv` file should be in the format of two rows if distance and concentration with the top two rows being titles.
 
 Numerical stability is enforced using the CFL condition:
 C = U·dt / dx ≤ 1  
