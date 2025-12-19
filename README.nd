@@ -16,13 +16,13 @@ Python 3, NumPy, Matplotlib, Pandas
 ## Model Parameters
 The model requires the following user-defined parameters:
 
-- **t_start (s)** – Start time of the simulation (fixed at 0 s)
-- **t_end (s)** – End time of the simulation
-- **dt (s)** – Temporal resolution (time step size)
-- **dx (m)** – Spatial resolution (distance between grid points)
-- **U (m/s)** – Mean flow velocity in the river
-- **lambda_decay (1/s)** – Exponential decay constant controlling how the pollutant input decreases over time
-- **perturbation_factor (%)** – Percentage perturbation applied to the flow velocity to simulate variable stream velocity
+- t_start (s) – Start time of the simulation (fixed at 0 s)
+- t_end (s) – End time of the simulation
+- dt (s) – Temporal resolution (time step size)
+- dx (m) – Spatial resolution (distance between grid points)
+- U (m/s) – Mean flow velocity in the river
+- lambda_decay (1/s) – Exponential decay constant controlling how the pollutant input decreases over time
+- perturbation_factor (%) – Percentage perturbation applied to the flow velocity to simulate variable stream velocity
 
 Initial concentration data are read from `initial_conditions.csv` and interpolated
 onto the model grid.
