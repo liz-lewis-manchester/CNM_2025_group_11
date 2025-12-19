@@ -1,0 +1,148 @@
+# Modelling Pollutant Transport in a River (1D Advection Model)
+
+## Overview
+This project develops a one-dimensional numerical model to simulate the transport
+of a pollutant in a river using the advection equation. The model computes how
+pollutant concentration evolves in space and time downstream of a pollution source.
+
+The coursework integrates numerical methods, Python programming, data handling,
+testing, and collaborative software development using GitHub, reflecting professional
+engineering practice.
+
+## Governing Equation
+The pollutant transport is modelled using the 1D advection equation:
+
+∂C/∂t + U ∂C/∂x = 0
+
+where:
+- C is pollutant concentration (µg/m³)
+- t is time (s)
+- x is distance along the river (m)
+- U is the flow velocity (m s⁻¹)
+
+An explicit upwind finite difference scheme is used to discretise the equation
+in both time and space.
+
+## Code Structure
+The repository follows a clear and professional folder structure:
+
+- src/        : Core model and numerical methods
+- data/       : Input data files (e.g. initial_conditions.csv)
+- notebooks/  : Jupyter notebooks used for testing and visualisation
+- tests/      : Automated unit and integration tests
+- results/    : Saved plots and example outputs for all test cases
+- README.md   : Project documentation
+
+## Requirements
+- Python 3.x
+- NumPy
+- Matplotlib
+- Pandas (for interpolation)
+- Google Colab or local Python environment
+
+## Model Features
+At a minimum, the code:
+- Uses finite difference methods to solve the advection equation
+- Allows the user to specify:
+  - Model domain
+  - Spatial resolution
+  - Temporal resolution
+  - Flow velocity
+- Initialises the spatial and temporal model domain
+- Reads initial conditions from `initial_conditions.csv`
+- Interpolates input data onto the model grid
+- Handles upstream and downstream boundary conditions
+- Automatically produces plots of pollutant concentration over time and space
+- Includes stability checks using the CFL condition
+
+## Stability and CFL Condition
+Numerical stability is controlled using the Courant–Friedrichs–Lewy (CFL) condition:
+
+C = U·Δt / Δx ≤ 1
+
+If the CFL condition is violated, the time step Δt is automatically reduced to
+maintain numerical stability. This ensures physically reasonable results and
+prevents numerical instability.
+
+## Test Cases
+The following test cases are implemented in line with the coursework specification.
+
+### Test Case 1: Simple Initial Condition
+- Domain: 20 m downstream
+- Spatial resolution: 0.2 m
+- Simulation time: 5 minutes (300 s)
+- Temporal resolution: 10 s
+- Flow velocity: U = 0.1 m s⁻¹
+- Initial condition: 250 µg/m³ at x = 0, zero elsewhere
+
+Purpose:
+- Verify correct implementation of the advection scheme
+- Confirm correct handling of boundary conditions
+- Demonstrate basic pollutant transport behaviour
+
+### Test Case 2: CSV Initial Conditions with Interpolation
+- Initial concentration read from `initial_conditions.csv`
+- Measurement points are not aligned with the model grid
+- Concentrations are interpolated onto the model domain
+
+Purpose:
+- Demonstrate data handling and interpolation
+- Show model flexibility for arbitrary initial conditions
+- Validate realistic initial concentration profiles
+
+### Test Case 3: Sensitivity Analysis
+The model is tested for sensitivity to:
+- Flow velocity (U)
+- Spatial resolution (Δx)
+- Temporal resolution (Δt)
+
+Purpose:
+- Assess numerical accuracy and stability
+- Demonstrate understanding of model parameter sensitivity
+- Evaluate effects of resolution on solution quality
+
+### Test Case 4: Exponentially Decaying Input
+- Upstream pollutant concentration decays exponentially with time
+
+Purpose:
+- Investigate time-varying boundary conditions
+- Assess impact of decaying pollutant sources on downstream concentration
+
+### Test Case 5: Variable Velocity Profile
+- Flow velocity includes a ±10% random perturbation about a mean value
+
+Purpose:
+- Explore model behaviour under non-uniform flow conditions
+- Assess robustness of numerical implementation
+
+## Outputs
+For each test case, the code produces:
+- Plots of concentration versus distance at selected times
+- Comparison plots for sensitivity analyses
+- Saved figures located in the `results/` directory
+
+These outputs allow clear visual interpretation of pollutant transport behaviour.
+
+## Testing and Quality Control
+- Unit tests verify numerical functions and boundary condition handling
+- Integration tests ensure full model runs successfully for each test case
+- Tests are located in the `tests/` directory and can be run automatically
+
+This ensures correctness, reliability, and reproducibility of results.
+
+## GitHub Collaboration and Version Control
+The project follows professional GitHub practices:
+- Each contributor works on separate branches
+- Changes are committed with clear, descriptive messages
+- Pull requests are reviewed by at least one teammate
+- Issues are used to track tasks and discuss improvements
+- Code reviews are used to improve clarity and correctness
+
+GitHub commit history and reviews demonstrate individual contributions.
+
+## Limitations
+- The model considers advection only (no diffusion or reactions)
+- One-dimensional flow is assumed
+- Numerical diffusion is present due to the upwind scheme
+
+These simplifications are appropriate for the scope of this coursework.
