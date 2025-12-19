@@ -11,7 +11,7 @@ Python 3, NumPy, Matplotlib, Pandas
 
 ## Files
 - Python script or notebook
-- `initial_conditions.csv` (input data)
+- 'initial_conditions.csv' (input data)
 
 ## Model Parameters
 The model requires the following user-defined parameters:
@@ -24,9 +24,11 @@ The model requires the following user-defined parameters:
 - lambda_decay (1/s) – Exponential decay constant controlling how the pollutant input decreases over time
 - perturbation_factor (%) – Percentage perturbation applied to the flow velocity to simulate variable stream velocity
 
-Initial concentration data are read from `initial_conditions.csv` and interpolated
+Initial concentration data are read from 'initial_conditions.csv' and interpolated
 onto the model grid. 
-The `initial_conditions.csv` file should be in the format of two rows if distance and concentration with the top two rows being titles.
+The 'initial_conditions.csv' file should be in the format of two rows if distance and concentration with the top two rows being titles.
+
+Note that the 'initial conditions' file should be downloaded on the computer and uploaded on to the google colab for the code to successfully run
 
 Numerical stability is enforced using the CFL condition:
 C = U·dt / dx ≤ 1  
@@ -36,5 +38,5 @@ If violated, dt is automatically adjusted.
 1. Open the code in Google Colab or a local Python environment.
 2. Run all cells from top to bottom.
 3. Enter model parameters when prompted (dx, dt, U).
-4. Upload `initial_conditions.csv` when requested.
+4. Upload 'initial_conditions.csv' when requested.
 5. Plots are generated automatically.
